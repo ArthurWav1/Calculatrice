@@ -3,8 +3,8 @@ package model;
 import java.util.Stack;
 
 public class CalculatorModel implements CalculatorModelInterface{
-	private static String accu = "";
-	private static Stack<Double> memory;
+	private String accu = "";
+	private Stack<Double> memory;
 	
 	
 	
@@ -24,10 +24,10 @@ public class CalculatorModel implements CalculatorModelInterface{
 	public void setAccu(String accu) {
 		this.accu = accu;
 	}
-	public Stack getMemory() {
-		return memory;
+	public Stack<Double> getMemory() {
+		return this.memory;
 	}
-	public void setMemory(Stack memory) {
+	public void setMemory(Stack<Double> memory) {
 		this.memory = memory;
 	}
 
