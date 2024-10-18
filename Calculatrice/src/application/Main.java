@@ -1,10 +1,9 @@
 package application;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import view.CalculatorGUI;
+import view.CalculatorGUIInterface;
 
 public class Main extends Application{
 
@@ -14,11 +13,8 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) {
-		CalculatorGUI gui = new CalculatorGUI();
-		
+		CalculatorGUIInterface gui = new CalculatorGUI();
 		gui.affiche(primaryStage);
-		
-		
 	}
 
 }
