@@ -11,42 +11,82 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.base.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.base.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.controls.jar" sourcepath="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/src.zip">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.controls.jar" sourcepath="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/src.zip">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.fxml.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.fxml.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.graphics.jar" sourcepath="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/src.zip">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.graphics.jar" sourcepath="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/src.zip">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.media.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.media.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.swing.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.swing.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.web.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx.web.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx-swt.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Eclipse Adoptium/javafx-sdk-23/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lapor/Downloads/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx-swt.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

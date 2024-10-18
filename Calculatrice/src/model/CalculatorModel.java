@@ -1,22 +1,22 @@
 package model;
 
+import java.util.List;
 import java.util.Stack;
 
 public class CalculatorModel implements CalculatorModelInterface{
-	private String accu = "";
+	
+	private String accu;
 	private Stack<Double> memory;
 	
 	
-	
-	
 	public CalculatorModel() {
-		memory = new Stack<Double>();
+		this.memory = new Stack<Double>();
+		this.accu = "";
 	}
 	
 	public void push(double a) {
 		this.memory.push(a);
 	}
-	
 	
 	public String getAccu() {
 		return accu;
