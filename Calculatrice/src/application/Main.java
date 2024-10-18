@@ -1,20 +1,24 @@
 package application;
-	
-import java.util.Stack;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import view.CalculatorGUI;
 
+public class Main extends Application{
 
-public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
-		
-	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	@Override
+	public void start(Stage primaryStage) {
+		CalculatorGUI gui = new CalculatorGUI();
+		
+		gui.affiche(primaryStage);
+		
+		
+	}
+
 }
