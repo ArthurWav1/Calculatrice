@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button alignment="TOP_RIGHT" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" style="-fx-font-size: 15; -fx-background-color: aquamarine; -fx-effect: ;" text="0" />
+      <Button alignment="TOP_RIGHT" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" text="0" />
       <Button layoutX="20.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="1" />
       <Button layoutX="115.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="2" />
       <Button layoutX="210.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="." />

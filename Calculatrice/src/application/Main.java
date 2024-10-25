@@ -13,8 +13,7 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) {
-		CalculatorGUIInterface gui = new CalculatorGUI();
-		gui.affiche(primaryStage);
+		CalculatorGUIInterface gui = new CalculatorGUI(primaryStage);
 	}
 
 }

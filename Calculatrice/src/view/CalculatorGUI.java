@@ -1,9 +1,12 @@
 package view;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,11 +18,29 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	
 	public static boolean b = false;
 	
-	public CalculatorGUI() {};
+	
+	
+	public CalculatorGUI(Stage primaryStage) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CalcTemplate.fxml"));
+		try {
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	};
 	
 	@Override
 	public void affiche(Stage primaryStage) {
-		Pane root = new Pane();
+		
+		
+		
+		/*Pane root = new Pane();
 		Scene scene = new Scene(root,500,600);
 		
 		Button b0 = new Button();
@@ -79,7 +100,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		
 		Label lab = new Label();
 		historique.getChildren().add(lab);
-		
+		root.getChildren().add(historique);
 		
 		lab.setLayoutX(100);
 		lab.setLayoutY(200);
@@ -100,6 +121,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();	
+		*/
 	}
 
 	@Override
