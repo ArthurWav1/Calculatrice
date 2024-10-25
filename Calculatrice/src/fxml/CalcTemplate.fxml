@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button alignment="TOP_RIGHT" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" style="-fx-font-size: 15; -fx-background-color: aquamarine; -fx-effect: ;" text="0" />
+      <Button layoutX="20.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="1" />
+      <Button layoutX="115.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="2" />
+      <Button layoutX="210.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="." />
+      <Button layoutX="210.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="3" />
+      <Button layoutX="20.0" layoutY="390.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="4" />
+      <Button layoutX="115.0" layoutY="390.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="5" />
+      <Button layoutX="210.0" layoutY="390.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="6" />
+      <Button layoutX="20.0" layoutY="325.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="7" />
+      <Button layoutX="115.0" layoutY="325.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="8" />
+      <Button layoutX="210.0" layoutY="325.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="9" />
+      <Button layoutX="305.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="+" />
+      <Button layoutX="400.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="ENTER" />
+      <Button layoutX="305.0" layoutY="390.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="-" />
+      <Button layoutX="305.0" layoutY="325.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="*" />
+      <Button layoutX="305.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="+/-" />
+      <Button layoutX="400.0" layoutY="325.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="/" />
+      <Button layoutX="400.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="BACKSPACE">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="400.0" layoutY="390.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="SWITCH" />
+      <VBox layoutX="20.0" layoutY="20.0" prefHeight="300.0" prefWidth="465.0">
+         <children>
+            <Label prefHeight="60.0" prefWidth="465.0" text="Label" textAlignment="RIGHT" />
+            <Label prefHeight="60.0" prefWidth="465.0" text="Label" />
+            <Label prefHeight="60.0" prefWidth="465.0" text="Label" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="60.0" prefWidth="465.0" text="5.0" textAlignment="RIGHT" />
+            <Label prefHeight="60.0" prefWidth="465.0" text="azadazd" textAlignment="RIGHT">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+      </VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="287.0" layoutX="10.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="481.0" />
+   </children>
+</Pane>
