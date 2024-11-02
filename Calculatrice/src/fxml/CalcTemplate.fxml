@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button alignment="TOP_RIGHT" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" text="0" />
+      <Button fx:id="boutonZero" alignment="TOP_RIGHT" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" text="0" />
       <Button layoutX="20.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="1" />
       <Button layoutX="115.0" layoutY="455.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="2" />
       <Button layoutX="210.0" layoutY="520.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="." />
@@ -35,17 +35,17 @@
       <Button layoutX="400.0" layoutY="390.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="85.0" text="SWITCH" />
       <VBox layoutX="20.0" layoutY="20.0" prefHeight="300.0" prefWidth="465.0">
          <children>
-            <Label prefHeight="60.0" prefWidth="465.0" text="Label" textAlignment="RIGHT" />
-            <Label prefHeight="60.0" prefWidth="465.0" text="Label" />
-            <Label prefHeight="60.0" prefWidth="465.0" text="Label" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="60.0" prefWidth="465.0" text="5.0" textAlignment="RIGHT" />
-            <Label prefHeight="60.0" prefWidth="465.0" text="azadazd" textAlignment="RIGHT">
+            <Label fx:id="l4" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="465.0" text="4.0" textAlignment="RIGHT" />
+            <Label fx:id="l3" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="465.0" text="3.0" />
+            <Label fx:id="l2" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="465.0" text="2.0" />
+            <Label fx:id="l1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="60.0" prefWidth="465.0" text="1.0" textAlignment="RIGHT" />
+            <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="465.0" text="0.0" textAlignment="RIGHT" underline="true">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Label>
          </children>
       </VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="287.0" layoutX="10.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="481.0" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#2298ff00" height="300.0" layoutX="20.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="465.0" />
    </children>
 </Pane>
