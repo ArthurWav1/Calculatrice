@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -233,9 +232,12 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		change(liste);
 	}
 	
+	/**
+	 * Change la valeur du texte de l'accumulateur (l'entrée courrante de la calculatrice)
+	 */
 	@Override
 	public void change(String accu) {
-		
+		current.setText(current.getText() + accu);
 	}
 
 	/**
