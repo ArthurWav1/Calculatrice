@@ -28,7 +28,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 	}
 	
 	public void setMemory(Stack<Double> memory) {
-		this.memory = memory;
+		this.memory = memory;	
 	}
 
 	
