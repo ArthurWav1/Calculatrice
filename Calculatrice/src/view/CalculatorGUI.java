@@ -172,11 +172,11 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		history.setFillWidth(true);
 		
 		//Historique des derniers résultats
-		current = new Label("Courant");
-		l1 = new Label("1");
-		l2 = new Label("2");
-		l3 = new Label("3");
-		l4 = new Label("4");
+		current = new Label("");
+		l1 = new Label("");
+		l2 = new Label("");
+		l3 = new Label("");
+		l4 = new Label("");
 		
 		current.setAlignment(Pos.CENTER_RIGHT);
 		l1.setAlignment(Pos.CENTER_RIGHT);
@@ -238,6 +238,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	@Override
 	public void change(String accu) {
 		current.setText(current.getText() + accu);
+		current.setText(accu);
 	}
 
 	/**

@@ -2,7 +2,7 @@ package model;
 
 public interface CalculatorModelInterface {
 	
-	public double add();
+	public double add() throws Exception;
 	public double substract();
 	public double multiply();
 	public double divide();
