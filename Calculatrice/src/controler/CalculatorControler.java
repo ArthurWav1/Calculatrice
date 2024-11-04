@@ -1,6 +1,7 @@
 package controler;
 
 import java.util.List;
+import java.util.Stack;
 
 import model.CalculatorModel;
 import model.CalculatorModelInterface;
@@ -10,10 +11,10 @@ import view.CalculatorGUIInterface;
 public class CalculatorControler implements CalculatorControlerInterface {
 
 
-	private CalculatorModelInterface model;
-	private CalculatorGUIInterface gui;
+	private CalculatorModel model;
+	private CalculatorGUI gui;
 	
-	public CalculatorControler(CalculatorModelInterface model, CalculatorGUIInterface gui) {
+	public CalculatorControler(CalculatorModel model, CalculatorGUI gui) {
 		this.model = model;
 		this.gui = gui;
 	}
@@ -21,7 +22,12 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	
 	@Override
 	public void change(String accu) {
-		// TODO Auto-generated method stub
+		if(accu == "") {
+			model.setAccu(0);
+		}
+		else {
+			model.setAccu(Double.parseDouble(accu));
+		}
 		
 	}
 
@@ -29,6 +35,60 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	public void change(List<Double> stackData) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public Stack<Double> push() {
+		// TODO Auto-generated method stub
+		return model.push();
+	}
+	
+	@Override
+	public Stack<Double> drop() {
+		// TODO Auto-generated method stub
+		return(model.drop());
+	}
+
+	@Override
+	public Stack<Double> swap() {
+		// TODO Auto-generated method stub
+		return(model.swap());
+	}
+
+	@Override
+	public Stack<Double> clear() {
+		// TODO Auto-generated method stub
+		return(model.clear());
+	}
+
+	@Override
+	public Stack<Double> add() {
+		// TODO Auto-generated method stub
+		return(model.add());
+	}
+
+	@Override
+	public Stack<Double> substract() {
+		// TODO Auto-generated method stub
+		return(model.substract());
+	}
+
+	@Override
+	public Stack<Double> multiply() {
+		// TODO Auto-generated method stub
+		return(model.multiply());
+	}
+
+	@Override
+	public Stack<Double> divide() {
+		// TODO Auto-generated method stub
+		return(model.divide());
+	}
+
+	@Override
+	public Stack<Double> opposite() {
+		// TODO Auto-generated method stub
+		return(model.opposite());
 	}
 
 }

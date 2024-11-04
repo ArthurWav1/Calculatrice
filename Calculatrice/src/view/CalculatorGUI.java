@@ -68,6 +68,27 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		Button bDel = new Button("Del");
 		Button bEnter = new Button("Enter");
 		
+		//Gestion des actions des boutons
+		
+		b0.setOnAction(event -> handleNumberClick("0"));
+		b1.setOnAction(event -> handleNumberClick("1"));
+		b2.setOnAction(event -> handleNumberClick("2"));
+		b3.setOnAction(event -> handleNumberClick("3"));
+		b4.setOnAction(event -> handleNumberClick("4"));
+		b5.setOnAction(event -> handleNumberClick("5"));
+		b6.setOnAction(event -> handleNumberClick("6"));
+		b7.setOnAction(event -> handleNumberClick("7"));
+		b8.setOnAction(event -> handleNumberClick("8"));
+		b9.setOnAction(event -> handleNumberClick("9"));
+		bAdd.setOnAction(event -> handleOperationClick("+"));
+		bSub.setOnAction(event -> handleOperationClick("-"));
+		bProd.setOnAction(event -> handleOperationClick("*"));
+		bDiv.setOnAction(event -> handleOperationClick("/"));
+		bComa.setOnAction(event -> handleNumberClick("."));
+		bSign.setOnAction(event -> handleNumberClick("+/-"));
+		bSwitch.setOnAction(event -> handleActionClick("Del"));
+		bEnter.setOnAction(event -> handleActionClick("Enter"));
+		
 		//Ajout des boutons à une liste pour mieux les manipuler
 		buttonList.add(b0);
 		buttonList.add(b1);
@@ -207,17 +228,17 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		root.getChildren().add(rect);
 
 		//TEST	
-		b1.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				b =!b;
-				if(b) {
-					test();
-				}
-				else {
-					l1.setText("");
-				}
-			}
-		});
+		//b1.setOnAction(new EventHandler<ActionEvent>() {
+			//public void handle(ActionEvent event) {
+				//b =!b;
+				//if(b) {
+					//test();
+				//}
+				//else {
+					//current.setText(current.getText()+'1');
+				//}
+			//}
+		//});
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();	
@@ -253,4 +274,31 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		l4.setText(stackData.get(3));
 	}
 	
+	public void handleNumberClick(String nb) {
+		//Gère les boutons 0123456789  .  +/-
+		if (nb == "+/-") {
+			if (current.getText().charAt(0) == '-') {
+				current.setText(current.getText().substring(1));
+			}
+			else {
+				current.setText("-"+current.getText());
+			}
+		}
+		else if (nb == ".") {
+			if (!current.getText().contains(".")) {
+				current.setText(current.getText()+nb);
+			}
+		}
+		else {
+			current.setText(current.getText()+nb);
+		}
+	}
+	
+	public void handleOperationClick(String operation) {
+		//Gère les boutons   +-*/
+	}
+	
+	public void handleActionClick(String action) {
+		//Gère les boutons Del Enter
+	}
 }
