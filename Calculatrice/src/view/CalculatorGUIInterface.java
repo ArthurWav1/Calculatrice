@@ -8,4 +8,5 @@ public interface CalculatorGUIInterface {
 	public void affiche(Stage primaryStage);
 	public void change(String accu);
 	public void change(List<String> stackData);
+	public void changeError(String error);
 }

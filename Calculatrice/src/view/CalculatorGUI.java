@@ -14,6 +14,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Vue de l'application créant tout le visuel de l'application et gère ce visuel lorsque nécessaire à partir des instructions du controlleur
+ */
 public class CalculatorGUI implements CalculatorGUIInterface {
 	
 	//Dimensions des boutons
@@ -32,6 +35,9 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	private Label l2;
 	private Label l3;
 	private Label l4;
+	
+	//Label pour indiquer d'éventuelles erreurs à l'utilisateur
+	private Label error;
 	
 	//Les différents boutons de la calculatrice 
 	//Les boutons des 10 chiffres
@@ -212,6 +218,9 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		l3 = new Label("");
 		l4 = new Label("");
 		
+		//Label des erreurs
+		error = new Label("");
+		
 		//Positionnement du texte des Label au centre du bord droit du Label
 		current.setAlignment(Pos.CENTER_RIGHT);
 		l1.setAlignment(Pos.CENTER_RIGHT);
@@ -230,6 +239,8 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		l3.setPrefHeight(LABEL_PREF_HEIGHT);
 		l4.setPrefWidth(LABEL_PREF_WIDTH);
 		l4.setPrefHeight(LABEL_PREF_HEIGHT);
+		error.setTextFill(Color.RED);
+		
 		
 		//Ligne séparatrice de l'accumulateur et de la pile
 		Line line = new Line();
@@ -249,8 +260,9 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		
 		//Ajout des derniers éléments dans le Pane
 		history.getChildren().addAll(l4,l3,l2,l1,current);
-		root.getChildren().add(line);
 		root.getChildren().add(history);
+		root.getChildren().add(error);
+		root.getChildren().add(line);
 		root.getChildren().add(rect);
 		
 		
@@ -264,7 +276,6 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	 */
 	@Override
 	public void change(String accu) {
-		current.setText(current.getText() + accu);
 		current.setText(accu);
 	}
 
@@ -279,6 +290,13 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		l4.setText(stackData.get(3));
 	}
 	
+	/**
+	 * Change le texte affiché dans le Label d'erreur
+	 */
+	@Override
+	public void changeError(String error) {
+		this.error.setText(error);
+	}
 	
 	//********Getters et setters********//
 	public Label getCurrent() {

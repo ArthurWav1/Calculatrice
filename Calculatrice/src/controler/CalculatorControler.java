@@ -3,6 +3,7 @@ package controler;
 import java.util.ArrayList;
 import java.util.List;
 
+import customException.CalculatorException;
 import javafx.scene.control.Label;
 import model.CalculatorModel;
 import model.CalculatorModelInterface;
@@ -120,37 +121,53 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	}
 	
 	/**
+	 * Modifie le message d'erreur de la calculatrice
+	 */
+	public void changeError(String error) {
+		this.gui.changeError(error);
+	}
+	
+	/**
 	 * Méthode gérant les actions à réaliser sur la vue et le model selon quel bouton a été 
 	 * utilisé par l'opérateur parmi les boutons 0;1;2;3;4;5;6;7;8;9;.;+/- (+/- correspond au signe du nombre)
 	 * @param nb : nombre (ou virgule ou signe) correspondant au bouton appuyé par l'utilisateur sous forme de String
 	 */
-	public void handleNumberClick(String nb) {
+	public void handleNumberClick(String nb){
 		switch(nb) { //Selon le bouton appuyé on effectue les actions nécessaires pour refléter les actions de l'utilisateur
 		case "+/-":
-			if (current.getText().charAt(0) == '-') { //Cas si le nombre d'origine est négatif
-				this.change(current.getText().substring(1));
+			if(current.getText() == null || current.getText().equals("")) { //On vérifie que l'on ne change pas le signe de "rien"
+				this.changeError("On ne peut pas changer le signe d'un nombre inexistant");
 			}
-			else { //Cas positif
+			else if (current.getText().charAt(0) == '-') { //Cas si le nombre d'origine est négatif
+				this.change(current.getText().substring(1));
+				this.gui.changeError("");
+			}
+			else{ //Cas positif
 				this.change("-"+current.getText());
+				this.gui.changeError("");
 			}
 			break;
 		case ".":
 			if (!current.getText().contains(".")) { //On ne peut ajouter une virgule uniquement s'il n'y en a pas déjà une
 				if(current.getText().equals("")) { //Si le texte de base est vide on ajoute automatiquement "0."
 					this.change('0'+current.getText()+nb);
+					this.gui.changeError("");
 				}
 				else { //On ajoute la virgule
 					this.change(current.getText()+nb);
+					this.gui.changeError("");
 				}
 			}
 			break;
 		case "0": //Cas spécial pour 0 afin d'éviter de pouvoir ajouter plusieurs 0 à gauche du nombre
 			if (!current.getText().equals("0")) {
 				this.change(current.getText()+nb);
+				this.gui.changeError("");
 			}
 			break;
 		default: //Cas pour les chiffres 1;2;3;4;5;6;7;8;9, on ajoute simplement le chiffre à droite du nombre
 			this.change(current.getText()+nb);
+			this.gui.changeError("");
 		}
 	}
 		
@@ -160,31 +177,40 @@ public class CalculatorControler implements CalculatorControlerInterface {
 		 */
 	public void handleOperationClick(String operation) {
 		ArrayList<Double> newHistory = new ArrayList<>(); //Liste qui contient les 4 nouveaux éléments du dessus de la pile
+		try {
 		switch(operation) {
 			case "+":
 				this.model.add(); 
-				this.change(""); //Après l'addition on vide l'accumulateur (le résultat se retrouve en haut de la pile)
 				newHistory = ((CalculatorModel) this.model).topFourNumbers(); //On récupère les 4 nouveaux éléments du dessus de la pile
+				this.change(""); //Après l'addition on vide l'accumulateur (le résultat se retrouve en haut de la pile)
 				this.change(newHistory); //On modifie sur la vue les 4 Label affichant le dessus de la pile
+				this.gui.changeError("");
 				break;
 			case "-": //On applique la même logique que pour "+"
 				this.model.substract();
-				this.change("");
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
+				this.change("");
 				this.change(newHistory);
+				this.gui.changeError("");
 				break;
 			case "*": //On applique la même logique que pour "+"
 				this.model.multiply();
-				this.change("");
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
+				this.change("");
 				this.change(newHistory);
+				this.gui.changeError("");
 				break;
 			case "/": //On applique la même logique que pour "+", la méthode divide se charge de vérifier la division par 0
 				this.model.divide();
-				this.change("");
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
+				this.change("");
 				this.change(newHistory);
+				this.gui.changeError("");
 				break;
+			}
+		}
+		catch(CalculatorException e) {
+			this.gui.changeError(e.getMessage());
 		}
 	}
 		
@@ -194,22 +220,31 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	 */
 	public void handleActionClick(String action) {
 		ArrayList<Double> newHistory = new ArrayList<>(); //Même principe que pour la méthode handleOperationClick
+		try {
 		switch(action) {
 			case "Enter": //On ajoute simplement dans la pile l'élément de l'accumulateur puis on vide ce dernier
-				this.model.push(Double.parseDouble(current.getText()));
-				newHistory = ((CalculatorModel) this.model).topFourNumbers();
-				this.change(newHistory);
-				this.change("");
+				if(!current.getText().equals("")) {
+					this.model.push(Double.parseDouble(current.getText()));
+					newHistory = ((CalculatorModel) this.model).topFourNumbers();
+					this.change(newHistory);
+					this.change("");
+					this.gui.changeError("");
+				}
+				else {
+					changeError("Impossible de push un nombre vide");
+				}
 				break;
 			case "Del/Drop": //Bouton avec 2 fonctionnalité
 				if(!current.getText().equals("")) { //Dans le cas où le texte n'est pas vide 
 													//la fonction du bouton est de retirer le chiffre de droite dans l'accumulateur
 					change(current.getText().substring(0,current.getText().length()-1));
+					this.gui.changeError("");
 				}
 				else { //Dans  le cas où le texte de l'accumulateur est vide la fonction du bouton est de supprimer le résultat du dessus de la pile
-					this.model.drop();
+					this.model.pop();
 					newHistory = ((CalculatorModel) this.model).topFourNumbers();
-					change(newHistory);
+					this.change(newHistory);
+					this.gui.changeError("");
 				}
 				break;
 				
@@ -219,12 +254,21 @@ public class CalculatorControler implements CalculatorControlerInterface {
 				}
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
 				this.change(newHistory);
+				System.out.println(newHistory.get(0));
+				System.out.println(newHistory.get(1));
+				this.gui.changeError("");
 				break;
 			case "Clear": //On vide entièrement la pile et l'accumulateur
 				this.model.clear();
-				this.change("");
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
+				this.change("");
 				this.change(newHistory);
+				this.gui.changeError("");
+				break;
+			}
+		}
+		catch(CalculatorException e) {
+			this.gui.changeError(e.getMessage());
 		}
 	}
 }

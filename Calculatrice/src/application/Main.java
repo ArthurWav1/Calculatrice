@@ -6,6 +6,9 @@ import view.*;
 import model.*;
 import controler.*;
 
+/**
+ * Main de l'application qui est une calculatrice basée sur la notation polonaise inverse
+ */
 public class Main extends Application{
 
 	public static void main(String[] args) {
