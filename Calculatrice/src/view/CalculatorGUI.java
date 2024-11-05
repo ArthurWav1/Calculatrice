@@ -2,10 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class CalculatorGUI implements CalculatorGUIInterface {
@@ -22,24 +20,49 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	private static final int BUTTON0_PREF_WIDTH = 180;
 	private static final int BUTTON_PREF_WIDTH = 85; 
 	private static final int BUTTON_PREF_HEIGHT = 60;
+	//Dimensiosn des Labels
+	private static final int LABEL_PREF_WIDTH = 465 ;
+	private static final int LABEL_PREF_HEIGHT = 60;
+
 	
+	//Label contenant le nombre actuellement manipulé dans l'accumulateur (le Label "current")
+	//Les 4 autres labels correspondent respectivement aux 4 nombres du dessus de la pile, l1 contenant l'élément du dessus de la pile et l2 le suivant etc...
 	private Label current;
 	private Label l1;
 	private Label l2;
 	private Label l3;
 	private Label l4;
 	
-	private ArrayList<Button> buttonList = new ArrayList<>();
-	
-	
-	public static boolean b = false;
+	//Les différents boutons de la calculatrice 
+	//Les boutons des 10 chiffres
+	private Button b0;
+	private Button b1;
+	private Button b2;
+	private Button b3;
+	private Button b4;
+	private Button b5;
+	private Button b6;
+	private Button b7;
+	private Button b8;
+	private Button b9;
+	private Button bAdd; //Addition
+	private Button bSub; //Soustraction
+	private Button bProd; //Produit
+	private Button bDiv; //Division
+	private Button bComa; //Virgule
+	private Button bSign; //Signe
+	private Button bSwitch; //Échange des deux éléments du dessus de la pile
+	private Button bDel; //Fonction pour supprimer le chiffre de droite de l'accumulateur ou bien l'élément du dessus de la pile si l'accumulateur est vide
+	private Button bEnter; //Permet de placer la valeur de l'accumulateur au dessus de la pile
+	private Button bClear; //Permet de vider complètement la pile et l'accumulateur
 		
+	//Éléments de JavaFX pour créer la fenêtre et tout le visuel de l'application
 	private Pane root;
 	private Scene scene;
 	
 	public CalculatorGUI(Stage primaryStage) {
 		root = new Pane();
-		scene = new Scene(root,500,600);
+		scene = new Scene(root,500,630);
 		affiche(primaryStage);
 		
 	};
@@ -48,46 +71,29 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	public void affiche(Stage primaryStage) {
 		
 		//Création des boutons de la calculatrice
-		Button b0 = new Button("0");
-		Button b1 = new Button("1");
-		Button b2 = new Button("2");
-		Button b3 = new Button("3");
-		Button b4 = new Button("4");
-		Button b5 = new Button("5");
-		Button b6 = new Button("6");
-		Button b7 = new Button("7");
-		Button b8 = new Button("8");
-		Button b9 = new Button("9");
-		Button bAdd = new Button("+");
-		Button bSub = new Button("-");
-		Button bProd = new Button("*");
-		Button bDiv = new Button("/");
-		Button bComa = new Button(".");
-		Button bSign = new Button("+/-");
-		Button bSwitch = new Button("Switch");
-		Button bDel = new Button("Del");
-		Button bEnter = new Button("Enter");
+		this.b0 = new Button("0");
+		this.b1 = new Button("1");
+		this.b2 = new Button("2");
+		this.b3 = new Button("3");
+		this.b4 = new Button("4");
+		this.b5 = new Button("5");
+		this.b6 = new Button("6");
+		this.b7 = new Button("7");
+		this.b8 = new Button("8");
+		this.b9 = new Button("9");
+		this.bAdd = new Button("+");
+		this.bSub = new Button("-");
+		this.bProd = new Button("*");
+		this.bDiv = new Button("/");
+		this.bComa = new Button(".");
+		this.bSign = new Button("+/-");
+		this.bSwitch = new Button("Switch");
+		this.bDel = new Button("Del/Drop");
+		this.bEnter = new Button("Enter");
+		this.bClear = new Button("Clear");
 		
-		//Gestion des actions des boutons
-		
-		b0.setOnAction(event -> handleNumberClick("0"));
-		b1.setOnAction(event -> handleNumberClick("1"));
-		b2.setOnAction(event -> handleNumberClick("2"));
-		b3.setOnAction(event -> handleNumberClick("3"));
-		b4.setOnAction(event -> handleNumberClick("4"));
-		b5.setOnAction(event -> handleNumberClick("5"));
-		b6.setOnAction(event -> handleNumberClick("6"));
-		b7.setOnAction(event -> handleNumberClick("7"));
-		b8.setOnAction(event -> handleNumberClick("8"));
-		b9.setOnAction(event -> handleNumberClick("9"));
-		bAdd.setOnAction(event -> handleOperationClick("+"));
-		bSub.setOnAction(event -> handleOperationClick("-"));
-		bProd.setOnAction(event -> handleOperationClick("*"));
-		bDiv.setOnAction(event -> handleOperationClick("/"));
-		bComa.setOnAction(event -> handleNumberClick("."));
-		bSign.setOnAction(event -> handleNumberClick("+/-"));
-		bSwitch.setOnAction(event -> handleActionClick("Del"));
-		bEnter.setOnAction(event -> handleActionClick("Enter"));
+		//Liste permettant d'alléger le code en permettant d'affecter les dimensions de chaque bouton de manière concise
+		ArrayList<Button> buttonList = new ArrayList<>(); 
 		
 		//Ajout des boutons à une liste pour mieux les manipuler
 		buttonList.add(b0);
@@ -157,6 +163,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	
 		bSub.setLayoutX(305);
 		bSub.setLayoutY(390);
+		bSub.setFont(new Font(20)); //Permet de mieux distinguer le - et le . dans la fenêtre
 		
 		bProd.setLayoutX(305);
 		bProd.setLayoutY(325);
@@ -179,80 +186,79 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		bEnter.setLayoutX(400);
 		bEnter.setLayoutY(520);
 		
+		bClear.setPrefWidth(465);
+		bClear.setPrefHeight(40);
+		bClear.setLayoutX(20);
+		bClear.setLayoutY(585);
+		
 		//Ajout des boutons dans le Pane
 		root.getChildren().addAll(buttonList);
+		root.getChildren().add(bClear);
 		
 		//Création de l'historique des résultats
-		VBox history = new VBox();
+		VBox history = new VBox(); //Contient des éléments superposés verticalement
 		history.setLayoutX(20);
 		history.setLayoutY(20);
 		history.setPrefWidth(460);
 		history.setPrefHeight(300);
 		
-		//Les objets contenus dans l'historique remplissent toute la place disponible
+		//Permet de forcer les objets contenus dans l'historique à remplir toute la place disponible
 		history.setFillWidth(true);
 		
-		//Historique des derniers résultats
+		//Création des Label pour l'accumulateur et pour le dessus de la pile
 		current = new Label("");
 		l1 = new Label("");
 		l2 = new Label("");
 		l3 = new Label("");
 		l4 = new Label("");
 		
+		//Positionnement du texte des Label au centre du bord droit du Label
 		current.setAlignment(Pos.CENTER_RIGHT);
 		l1.setAlignment(Pos.CENTER_RIGHT);
 		l2.setAlignment(Pos.CENTER_RIGHT);
 		l3.setAlignment(Pos.CENTER_RIGHT);
 		l4.setAlignment(Pos.CENTER_RIGHT);
 
-		current.setPrefWidth(465);
-		current.setPrefHeight(60);
-		l1.setPrefWidth(465);
-		l1.setPrefHeight(60);
-		l2.setPrefWidth(465);
-		l2.setPrefHeight(60);
-		l3.setPrefWidth(465);
-		l3.setPrefHeight(60);
-		l4.setPrefWidth(465);
-		l4.setPrefHeight(60);
+		//Dimensionnement des 
+		current.setPrefWidth(LABEL_PREF_WIDTH);
+		current.setPrefHeight(LABEL_PREF_HEIGHT);
+		l1.setPrefWidth(LABEL_PREF_WIDTH);
+		l1.setPrefHeight(LABEL_PREF_HEIGHT);
+		l2.setPrefWidth(LABEL_PREF_WIDTH);
+		l2.setPrefHeight(LABEL_PREF_HEIGHT);
+		l3.setPrefWidth(LABEL_PREF_WIDTH);
+		l3.setPrefHeight(LABEL_PREF_HEIGHT);
+		l4.setPrefWidth(LABEL_PREF_WIDTH);
+		l4.setPrefHeight(LABEL_PREF_HEIGHT);
 		
+		//Ligne séparatrice de l'accumulateur et de la pile
+		Line line = new Line();
+		line.setLayoutX(20);
+		line.setLayoutY(250);
+		line.setStartX(0);
+		line.setStartY(0);
+		line.setEndX(465);
+		line.setEndY(0);
+		
+		//Rectangle pour "simuler" un écran de calculatrice
 		Rectangle rect = new Rectangle(20,20,465,300);
 		rect.setSmooth(true);
 		rect.setStrokeWidth(2);
 		rect.setFill(Color.TRANSPARENT);
 		rect.setStroke(Color.BLACK);
 		
-		//Ajout de l'historique dans le Pane
+		//Ajout des derniers éléments dans le Pane
 		history.getChildren().addAll(l4,l3,l2,l1,current);
+		root.getChildren().add(line);
 		root.getChildren().add(history);
 		root.getChildren().add(rect);
-
-		//TEST	
-		//b1.setOnAction(new EventHandler<ActionEvent>() {
-			//public void handle(ActionEvent event) {
-				//b =!b;
-				//if(b) {
-					//test();
-				//}
-				//else {
-					//current.setText(current.getText()+'1');
-				//}
-			//}
-		//});
+		
 		
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false); //Bloque le redimensionnement de la fenêtre par l'utilisateur
 		primaryStage.show();	
 	}
 
-	public void test() {
-		ArrayList<String> liste = new ArrayList<>();
-		liste.add("test1");
-		liste.add("test2");
-		liste.add("test3");
-		liste.add("test4");
-		change(liste);
-	}
-	
 	/**
 	 * Change la valeur du texte de l'accumulateur (l'entrée courrante de la calculatrice)
 	 */
@@ -263,8 +269,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	}
 
 	/**
-	 * Change les valeurs affichées dans l'historique des 4 dernières valeurs de la calculatrice
-	 * Utilisée lorsqu'on appuie sur "entrée" sur la calculatrice avec succès (pas d'erreur)
+	 * Change les valeurs affichées dans les 4 Label de l'historique
 	 */
 	@Override
 	public void change(List<String> stackData) {
@@ -274,31 +279,118 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		l4.setText(stackData.get(3));
 	}
 	
-	public void handleNumberClick(String nb) {
-		//Gère les boutons 0123456789  .  +/-
-		if (nb == "+/-") {
-			if (current.getText().charAt(0) == '-') {
-				current.setText(current.getText().substring(1));
-			}
-			else {
-				current.setText("-"+current.getText());
-			}
-		}
-		else if (nb == ".") {
-			if (!current.getText().contains(".")) {
-				current.setText(current.getText()+nb);
-			}
-		}
-		else {
-			current.setText(current.getText()+nb);
-		}
+	
+	//********Getters et setters********//
+	public Label getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(Label current) {
+		this.current = current;
+	}
+
+	public Label getL1() {
+		return l1;
+	}
+
+	public Label getL2() {
+		return l2;
+	}
+
+	public Label getL3() {
+		return l3;
+	}
+
+	public Label getL4() {
+		return l4;
+	}
+
+	public Button getB0() {
+		return b0;
+	}
+
+	public Button getB1() {
+		return b1;
+	}
+
+	public Button getB2() {
+		return b2;
+	}
+
+	public Button getB3() {
+		return b3;
+	}
+
+	public Button getB4() {
+		return b4;
+	}
+
+	public Button getB5() {
+		return b5;
+	}
+
+	public Button getB6() {
+		return b6;
+	}
+
+	public Button getB7() {
+		return b7;
+	}
+
+	public Button getB8() {
+		return b8;
+	}
+
+	public Button getB9() {
+		return b9;
+	}
+
+	public Button getbAdd() {
+		return bAdd;
+	}
+
+	public Button getbSub() {
+		return bSub;
+	}
+
+	public Button getbProd() {
+		return bProd;
+	}
+
+	public Button getbDiv() {
+		return bDiv;
+	}
+
+	public Button getbComa() {
+		return bComa;
+	}
+
+	public Button getbSign() {
+		return bSign;
+	}
+
+	public Button getbSwitch() {
+		return bSwitch;
+	}
+
+	public Button getbDel() {
+		return bDel;
+	}
+
+	public Button getbEnter() {
+		return bEnter;
+	}
+
+	public Button getbClear() {
+		return bClear;
 	}
 	
-	public void handleOperationClick(String operation) {
-		//Gère les boutons   +-*/
+	public Pane getRoot() {
+		return root;
 	}
-	
-	public void handleActionClick(String action) {
-		//Gère les boutons Del Enter
+
+	public Scene getScene() {
+		return scene;
 	}
+
 }

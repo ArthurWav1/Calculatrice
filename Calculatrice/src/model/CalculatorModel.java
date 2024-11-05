@@ -1,9 +1,12 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class CalculatorModel implements CalculatorModelInterface{
+	//Accumulateur du côté du modèle
 	private double accu;
+	//Pile des résultats
 	private Stack<Double> memory;
 	
 	public CalculatorModel() {
@@ -11,76 +14,77 @@ public class CalculatorModel implements CalculatorModelInterface{
 		this.accu = 0;
 	}
 	
-	public Stack<Double> push() {
-		memory.push(getAccu());
-		setAccu(0);
-		return memory;
+	/**
+	 * Méthode de push d'une pile, ajoute number au dessus de la pile
+	 */
+	public void push(Double number) {
+		memory.push(number);
 	}
-	
-	public double getAccu() {
-		return accu;
-	}
-	
-	public void setAccu(double accu) {
-		this.accu = accu;
-	}
-	
-	public Stack<Double> getMemory() {
-		return this.memory;
-	}
-	
-	public void setMemory(Stack<Double> memory) {
-		this.memory = memory;
-	}
-
 	
 	/**
-	 * S'il y a au moins 2 nombres dans la pile, additionne les deux du dessus,
-	 * S'il y a un seul nombre dans la pile et un nombre dans l'accumulateur, additionne ces deux nombres
-	 * S'il n'y a pas assez d'opérandes pour effectuer l'addition, informe l'utilisateur d'une erreur.
+	 * Méthode pour additionner les deux nombres du dessus de la pile ou bien
+	 * le nombre du dessus de la pile et l'accumulateur si celui-ci est non nul
 	 */
 	@Override
-	public Stack<Double> add() {
-		setAccu(getAccu()+pop());
-		return(memory);
-	}
-
-	/**
-	 * Pareil que l'addition
-	 */
-	@Override
-	public Stack<Double> substract() {
-		setAccu(pop()-getAccu());
-		return(memory);
-	}
-
-	/**
-	 * Pareil que l'addition
-	 */
-	@Override
-	public Stack<Double> multiply() {
-		setAccu(getAccu()*pop());
-		return(memory);
-	}
-
-	/**
-	 * Pareil que l'addition et vérifie qu'on ne divise pas par 0 !
-	 */
-	@Override
-	public Stack<Double> divide() {
-		if(getAccu() != 0) {
-			setAccu(pop()/getAccu());
+	public void add() {
+		if(this.accu != 0) { //Dans le cas où l'accumulateur est non nul, on l'ajoute à la pile avant de faire l'addition
+			this.memory.push(this.accu);
 		}
-		return(memory);
+		this.memory.push(this.memory.pop()+this.memory.pop());
+		this.accu = 0;
 	}
 
 	/**
-	 * Met dans l'accumulateur l'opposé de l'élément qui est en haut de pile ou bien l'élément de l'accumulateur (s'ils existent)
+	 * Méthode basée sur le même principe que l'addition mais pour la soustraction
+	 * La soustraction s'effectue dans le sens : élément le plus haut de la pile - deuxième élément le plus haut de la pile
 	 */
 	@Override
-	public Stack<Double> opposite() {
-		setAccu(-getAccu());
-		return(memory);
+	public void substract() {
+		if(this.accu != 0) {
+			this.memory.push(this.accu);
+		}
+		this.memory.push(this.memory.pop()-this.memory.pop());
+		this.accu = 0;
+	}
+
+	/**
+	 * Méthode basée sur le même principe que l'addition mais pour la multiplication
+	 */
+	@Override
+	public void multiply() {
+		if(this.accu != 0) {
+			this.memory.push(this.accu);
+		}
+		if(this.hasTwoNumber()) { //On vérifie bien que la pile contient au moins 2 éléments pour faire la multiplication
+			this.memory.push(this.memory.pop()*this.memory.pop());
+			this.accu = 0;
+		}
+	}
+
+	/**
+	 * Méthode basée sur le même principe que l'addition mais pour la division
+	 */
+	@Override
+	public void divide() {
+		if(this.accu!=0) {
+			this.memory.push(accu);
+		}
+		if(this.hasTwoNumber()) {
+			double acc = this.memory.pop();
+			double acc2 = this.memory.pop();
+			if(acc2 != 0) { //On ne divise pas par 0
+				this.memory.push(acc/acc2);
+				this.accu = 0;
+			}
+		}
+	}
+
+	/**
+	 * Change le signe du nombre dans l'accumulateur
+	 */
+	@Override
+	public void opposite() {
+		this.accu = -this.accu;
 	}
 	
 	/**
@@ -92,48 +96,37 @@ public class CalculatorModel implements CalculatorModelInterface{
 			double out = memory.pop();
 			return out;
 		}
-		else {
-			return 0;
-		}
+		return 0; //A VOIR
 	}
 
 	/**
-	 * Si existant, retire le dernier élément de la pile sans le renvoyer
+	 * Retire l'élément du dessus de la pile sans le retourner
 	 */
 	@Override
-	public Stack<Double> drop() {
-		if(memory.size()>0) {
-			setAccu(memory.pop());
-		}
-		return memory;
+	public void drop() {
+		this.memory.pop();
 	}
 
 	/**
-	 * Échange si possible les deux éléments du dessus de la pile (ou bien l'élément du dessus et l'élement de l'accumulateur si possible)
+	 * Échange si possible les deux éléments du dessus de la pile
 	 */
 	@Override
-	public Stack<Double> swap() {
-		if(memory.size()>1) {
-			double acc0 = getAccu();
-			double acc1 = pop();
-			double acc2 = pop();
-			setAccu(acc1);
-			push();
-			setAccu(acc2);
-			push();
-			setAccu(acc0);
+	public void swap() {
+		if(this.hasTwoNumber()) {
+			double acc1 = this.pop();
+			double acc2 = this.pop();
+			this.push(acc1);
+			this.push(acc2);
 		}
-		return(memory);
 	}
 
 	/**
 	 * Vide la pile et l'accumulateur
 	 */
 	@Override
-	public Stack<Double> clear() {
-		memory.clear();
-		setAccu(0);
-		return(memory);
+	public void clear() {
+		this.memory.clear();
+		this.accu = 0;
 	}
 	
 	/**
@@ -154,5 +147,47 @@ public class CalculatorModel implements CalculatorModelInterface{
 		}
 		return false;
 	}
+	
+	/**
+	 * Fournit les 4 éléments du dessus de la pile
+	 * S'il y a moins de 4 éléments dans la pile on remplit le reste de la liste avec des éléments null ce qui permet d'indiquer à CalculatorControler
+	 * de placer des String vide dans les Label correspondants
+	 * @return Une liste contenant les 4 éléments du dessus de la pile (des double et des éléments null)
+	 */
+	public ArrayList<Double> topFourNumbers(){
+		ArrayList<Double> fourNumbers = new ArrayList<>();
+		for(int i=0;i<4;i++) { 
+			if(!this.memory.empty()) { //On dépile l'élément du dessus de la pile si possible
+				fourNumbers.add(this.pop());
+			}
+			else { //Sinon on place un élément null dans la liste
+				fourNumbers.add(null);
+			}
+		}
+		for(int i=3;i>=0;i--) { //On replace dans le même ordre les éléments dans la pile
+			if(fourNumbers.get(i) != null) {
+				this.memory.push(fourNumbers.get(i));
+			}
+		}
+		return fourNumbers;
+	}
+	
+	//********Getters et setters********//
+		public double getAccu() {
+			return this.accu;
+		}
+		
+		public void setAccu(double accu) {
+			this.accu = accu;
+		}
+		
+		public Stack<Double> getMemory() {
+			return this.memory;
+		}
+		
+		public void setMemory(Stack<Double> memory) {
+			this.memory = memory;
+		}
+	
 	
 }

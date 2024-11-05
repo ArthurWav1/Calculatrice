@@ -14,9 +14,8 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) {
-		CalculatorGUIInterface gui = new CalculatorGUI(primaryStage);
-		CalculatorModelInterface model = new CalculatorModel();
-		CalculatorControlerInterface controler = new CalculatorControler(model,gui);
+		//Création du controlleur qui crée toute la calculatrice.
+		CalculatorControlerInterface controler = new CalculatorControler(new CalculatorModel(), new CalculatorGUI(primaryStage));
 	}
 
 }
