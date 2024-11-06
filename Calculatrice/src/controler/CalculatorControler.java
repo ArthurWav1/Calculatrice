@@ -228,7 +228,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
 					newHistory = ((CalculatorModel) this.model).topFourNumbers();
 					this.change(newHistory);
 					this.change("");
-					this.gui.changeError("");
+					this.changeError("");
 				}
 				else {
 					changeError("Impossible de push un nombre vide");
@@ -244,14 +244,12 @@ public class CalculatorControler implements CalculatorControlerInterface {
 					this.model.pop();
 					newHistory = ((CalculatorModel) this.model).topFourNumbers();
 					this.change(newHistory);
-					this.gui.changeError("");
+					this.changeError("");
 				}
 				break;
 				
 			case "Switch": //Dans le cas où il y a au moins deux éléments dans la pile on échange les 2 du dessus
-				if( ((CalculatorModel) this.model).hasTwoNumber()) { 
-					this.model.swap();
-				}
+				this.model.swap();
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
 				this.change(newHistory);
 				this.gui.changeError("");
