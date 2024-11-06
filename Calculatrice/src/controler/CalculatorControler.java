@@ -254,8 +254,6 @@ public class CalculatorControler implements CalculatorControlerInterface {
 				}
 				newHistory = ((CalculatorModel) this.model).topFourNumbers();
 				this.change(newHistory);
-				System.out.println(newHistory.get(0));
-				System.out.println(newHistory.get(1));
 				this.gui.changeError("");
 				break;
 			case "Clear": //On vide entièrement la pile et l'accumulateur

@@ -241,6 +241,12 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		l4.setPrefHeight(LABEL_PREF_HEIGHT);
 		error.setTextFill(Color.RED);
 		
+		//Agrandissement des textes des labels pour les rendre plus visibles
+		current.setFont(new Font(20));
+		l1.setFont(new Font(20));
+		l2.setFont(new Font(20));
+		l3.setFont(new Font(20));
+		l4.setFont(new Font(20));
 		
 		//Ligne séparatrice de l'accumulateur et de la pile
 		Line line = new Line();
